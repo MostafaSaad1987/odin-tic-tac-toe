@@ -1,13 +1,12 @@
 const clickables = document.querySelectorAll(".box");
 
-let currentPlayer = 0;
+let currentPlayer = Math.round(Math.random());
 
 let gameBoard = ["", "", "", "", "", "", "", "", ""];
 
 clickables.forEach(element => {
     element.addEventListener("click", e => {
-        element.classList.remove("temp");
-        if (element.textContent == "V") {
+        if (element.textContent == "") {
             changeGameBoard(element.id, currentPlayer);
             if (currentPlayer == 0) {
                 element.textContent = "O";
