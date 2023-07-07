@@ -6,6 +6,19 @@ let gameBoard = ["", "", "", "", "", "", "", "", ""];
 
 let currentStatus = document.querySelector("#status");
 
+currentStatus.textContent = "Welcome.";
+
+let xPlayer = "";
+let oPlayer = "";
+
+if (currentPlayer == 0) {
+    oPlayer = "Player 1";
+    xPlayer = "Player 2";
+} else {
+    oPlayer = "Player 2";
+    xPlayer = "Player 1";
+}
+
 clickables.forEach(element => {
     element.addEventListener("click", e => {
         if (element.classList.contains("temp")) {
@@ -26,6 +39,7 @@ clickables.forEach(element => {
 
 function changeGameBoard(playedBox, player) {
     gameBoard[playedBox] = player;
+    statusTurn();
     checkGameBoard();
 }
 
@@ -75,9 +89,9 @@ function checkGameBoard() {
 
 function announceWinner(boxToCheck) {
     if (boxToCheck == "0") {
-        currentStatus.textContent = "The winner is the O player.";
+        currentStatus.textContent = "The winner is " + oPlayer + ", the O player.";
     } else {
-        currentStatus.textContent = "The winner is the X player.";
+        currentStatus.textContent = "The winner is " + xPlayer + ", the X player.";
     }
 
     clickables.forEach(element => {
@@ -85,4 +99,12 @@ function announceWinner(boxToCheck) {
             element.classList.remove("temp");
         }
     });
+}
+
+function statusTurn() {
+    if (currentPlayer == 1) {
+        currentStatus.textContent = oPlayer + " (O)'s turn.";
+    } else {
+        currentStatus.textContent = xPlayer + " (X)'s turn.";
+    }
 }
