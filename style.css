@@ -7,10 +7,15 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    background-color: blueviolet;
 }
 
 h1 {
+    font-size: 4em;
     margin-top: 0;
+    color: white;
+    -webkit-text-stroke: 1px black;
 }
 
 .container {
@@ -20,14 +25,79 @@ h1 {
     text-align: center;
 }
 
-
 .box {
-    color: black;
-    border: 1px black solid;
+    color: white;
+    border: 2px white solid;
     font-size: 8em;
+
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.25);
+
+    background-color: #E22B83;
 
     display: grid;
     align-items: center;
     justify-content: center;
     align-content: center;
+}
+
+.temp {
+    background-color: #C01A6A;
+}
+
+.win {
+    background-color: white;
+    color: black;
+    box-shadow: none;
+}
+
+#status {
+    color: white;
+    font-size: 2em;
+    -webkit-text-stroke: 0.5px black;
+}
+
+button {
+    background-color: #20A7A9;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1B8B8D;
+}
+
+button:active {
+    background-color: #156F71;
+}
+
+/* For removing the outer borders of the outer boxes. */
+.box:first-child,
+.box:nth-child(4),
+.box:nth-child(7) {
+    border-left: 0;
+}
+
+.box:first-child,
+.box:nth-child(2),
+.box:nth-child(3) {
+    border-top: 0;
+}
+
+.box:nth-child(3),
+.box:nth-child(6),
+.box:nth-child(9) {
+    border-right: 0;
+}
+
+.box:nth-child(7),
+.box:nth-child(8),
+.box:nth-child(9) {
+    border-bottom: 0;
 }

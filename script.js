@@ -8,6 +8,8 @@ let currentStatus = document.querySelector("#status");
 
 currentStatus.textContent = "Welcome.";
 
+let playCounter = 0;
+
 let xPlayer = "";
 let oPlayer = "";
 
@@ -33,6 +35,7 @@ clickables.forEach(element => {
                 currentStatus.textContent = "Something is wrong here.";
             }
             element.classList.remove("temp");
+            playCounter++;
         }
     });
 });
@@ -44,44 +47,73 @@ function changeGameBoard(playedBox, player) {
 }
 
 function checkGameBoard() {
+
+    if (playCounter == 8) {
+        currentStatus.textContent = "Game ended. Tie.";
+    }
+
     // Top row.
     if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[0] !== "") {
         announceWinner(gameBoard[0]);
+        clickables[0].classList.add("win");
+        clickables[1].classList.add("win");
+        clickables[2].classList.add("win");
     }
 
     // Middle row.
     if (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5] && gameBoard[3] !== "") {
         announceWinner(gameBoard[3]);
+        clickables[3].classList.add("win");
+        clickables[4].classList.add("win");
+        clickables[5].classList.add("win");
     }
 
     // Bottom row.
     if (gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8] && gameBoard[6] !== "") {
         announceWinner(gameBoard[6]);
+        clickables[6].classList.add("win");
+        clickables[7].classList.add("win");
+        clickables[8].classList.add("win");
     }
 
     // Left column.
     if (gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6] && gameBoard[0] !== "") {
         announceWinner(gameBoard[0]);
+        clickables[0].classList.add("win");
+        clickables[3].classList.add("win");
+        clickables[6].classList.add("win");
     }
 
     // Middle column.
     if (gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7] && gameBoard[1] !== "") {
         announceWinner(gameBoard[1]);
+        clickables[1].classList.add("win");
+        clickables[4].classList.add("win");
+        clickables[7].classList.add("win");
     }
 
     // Right column.
     if (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8] && gameBoard[2] !== "") {
         announceWinner(gameBoard[2]);
+        clickables[2].classList.add("win");
+        clickables[5].classList.add("win");
+        clickables[8].classList.add("win");
     }
 
     // Left diagonal.
     if (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8] && gameBoard[0] !== "") {
         announceWinner(gameBoard[0]);
+        clickables[0].classList.add("win");
+        clickables[4].classList.add("win");
+        clickables[8].classList.add("win");
     }
 
     // Right diagonal.
     if (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6] && gameBoard[2] !== "") {
         announceWinner(gameBoard[2]);
+        clickables[2].classList.add("win");
+        clickables[4].classList.add("win");
+        clickables[6].classList.add("win");
     }
 }
 
@@ -107,4 +139,18 @@ function statusTurn() {
     } else {
         currentStatus.textContent = xPlayer + " (X)'s turn.";
     }
+}
+
+document.getElementById("reset").addEventListener("click", restartGame);
+
+function restartGame() {
+    clickables.forEach(element => {
+        element.className = "";
+        element.classList.add("box");
+        element.classList.add("temp");
+        element.textContent = "";
+    });
+
+    currentStatus.textContent = "Welcome.";
+    gameBoard = ["", "", "", "", "", "", "", "", ""];
 }
