@@ -151,6 +151,7 @@ function restartGame() {
         element.textContent = "";
     });
 
+    playCounter = 0;
     currentStatus.textContent = "Welcome.";
     gameBoard = ["", "", "", "", "", "", "", "", ""];
 }
